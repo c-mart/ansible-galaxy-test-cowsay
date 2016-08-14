@@ -1,0 +1,29 @@
+---
+# tasks file for cowsay
+
+- name: EPEL enabled for RHEL/CentOS older than 7
+  when: (ansible_os_family == 'RedHat') and
+        (ansible_distribution_major_version < '7')
+  yum:
+    name: epel-release.noarch
+    state: installed
+
+- name: cowsay installed from repo
+  when: (ansible_os_family != 'RedHat') or
+        (ansible_distribution_major_version < '7')
+  package:
+    name: cowsay
+    state: installed
+
+- name: cowsay installed from RPM for CentOS 7
+  when: ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'
+  yum:
+    name: http://www.melvilletheatre.com/articles/el7/cowsay-3.03-14.el7.centos.noarch.rpm
+    state: installed
+
+- name: test cow saying
+  command: cowsay sup
+  register: cowsay_output
+  changed_when: false
+
+- debug: msg="{{ cowsay_output.stdout_lines }}"
