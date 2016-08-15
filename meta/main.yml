@@ -1,6 +1,6 @@
 galaxy_info:
-  author: Chris Martin
-  description: Cowsay Install and Test
+  author: "Chris Martin"
+  description: "Cowsay Install and Test"
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
@@ -31,8 +31,8 @@ galaxy_info:
   # platform on this list, let us know and we'll get it added!
   #
   platforms:
-   - name: EL
-     versions:
+  - name: EL
+    versions:
   #  - all
   #  - 5
      - 6
